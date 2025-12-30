@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
 set -e
 
-# -------------------------
-# Functions
-# -------------------------
+# Stow packages to install (dotfiles)
+STOW_PACKAGES=(zsh p10k git ssh oh-my-zsh)
+
+# Apt packages to install
+# Note: unzip is needed for fnm
+APT_PACKAGES=(zsh curl stow unzip fzf)
 
 install_packages() {
     echo "Installing packages via apt..."
     sudo apt update
-    # unzip is needed for fnm
-    sudo apt install -y \
-        zsh \
-        curl \
-        stow \
-        unzip \
-        fzf
+    # Install packages defined in APT_PACKAGES
+    sudo apt install -y "${APT_PACKAGES[@]}"
 }
 
 stow_dotfiles() {
     echo "Stowing dotfiles..."
     cd "$(dirname "$0")"  # go to dotfiles repo root
-    stow zsh p10k git
+    stow "${STOW_PACKAGES[@]}"
 }
 
 setup_ssh() {
