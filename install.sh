@@ -48,6 +48,27 @@ setup_ssh() {
         echo "-----------------------------------------------------"
         echo "Please add this key to your GitHub account now."
         read -rp "Press ENTER after you have added it to GitHub to continue..."
+
+        # Add entry to the allowed_signers file (https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgsshallowedSignersFile). 
+        # For more info see (https://stackoverflow.com/questions/77935996/git-commit-s-silently-fails-to-sign-and-continues-to-commit-when-using-ssh)
+        ALLOWED_SIGNERS="$HOME/.ssh/allowedSigners"
+        mkdir -p "$(dirname "$ALLOWED_SIGNERS")"
+        PUB_KEY_FILE="$SSH_KEY.pub"
+        if [ ! -f "$PUB_KEY_FILE" ]; then
+            echo "Warning: public key $PUB_KEY_FILE not found; skipping allowedSigners update"
+        else
+            if [ ! -f "$ALLOWED_SIGNERS" ]; then
+                echo "# Add your public key pair you wish to trust" > "$ALLOWED_SIGNERS"
+            fi
+            ENTRY="$(git config --get user.email) namespaces=\"git\" $(cat "$PUB_KEY_FILE")"
+            if ! grep -Fxq "$ENTRY" "$ALLOWED_SIGNERS"; then
+                echo "$ENTRY" >> "$ALLOWED_SIGNERS"
+                chmod 600 "$ALLOWED_SIGNERS"
+                echo "Added public key to $ALLOWED_SIGNERS"
+            else
+                echo "Public key already present in $ALLOWED_SIGNERS"
+            fi
+        fi
     else
         echo "SSH key $SSH_KEY already exists, skipping"
     fi

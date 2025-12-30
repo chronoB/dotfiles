@@ -4,6 +4,9 @@
 	signingkey = ~/.ssh/id_ed25519_github.pub
 [gpg]
 	format = ssh
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowedSigners
 [commit]
 	gpgsign = true
 [fetch]
