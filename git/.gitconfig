@@ -1,0 +1,29 @@
+[user]
+	name = Finn Bayer
+	email = finn.o.bayer@gmail.com
+	signingkey = ~/.ssh/id_ed25519_github.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[fetch]
+	prune = true
+[rerere]
+	enabled = true
+[push]
+	default = current
+	autoSetupremote = true
+[pager]
+	branch = false
+[init]
+	defaultBranch = main
+[pull]
+	default = current
+	rebase = true
+[rebase]
+	autoStash = true
+[blame]
+	coloring = highlightRecent
+	date = short
+[core]
+	excludesFile = ~/.gitignore_global
