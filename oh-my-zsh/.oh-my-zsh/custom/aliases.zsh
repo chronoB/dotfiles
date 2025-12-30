@@ -1,3 +1,3 @@
-alias k="kubectl"
+alias k='kubectl'
 
-alias checkout="git checkout $(git branch -a | fzf)"
+alias checkout='git checkout $(git branch -a | fzf)'
