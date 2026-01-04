@@ -1,0 +1,8 @@
+# these are auto-generated in the install.sh script
+oh-my-zsh/.oh-my-zsh/custom/themes
+oh-my-zsh/.oh-my-zsh/custom/plugins
+
+# ignore all files in the ssh
+# but read the config which should be version controlled 
+ssh/.ssh/*
+!ssh/.ssh/config
