@@ -81,6 +81,9 @@ setup_ssh() {
     # Add key to ssh-agent (won't duplicate)
     ssh-add -l | grep -q "$SSH_KEY" || ssh-add "$SSH_KEY"
 
+    echo "Changing remote to git@github (ssh)..."
+    git remote set-url origin git@github.com:chronob/dotfiles.git
+
     echo "SSH key setup complete."
     echo
 }
