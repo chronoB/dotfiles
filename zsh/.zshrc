@@ -39,3 +39,7 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 export PATH="$HOME/scripts:$PATH"
+
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
