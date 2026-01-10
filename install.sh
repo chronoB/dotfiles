@@ -91,7 +91,8 @@ setup_ssh() {
 install_oh_my_zsh() {
     echo "Installing oh-my-zsh..."
     OH_MY_ZSH_DIR="$HOME/.oh-my-zsh"
-    if [ ! -d "$OH_MY_ZSH_DIR" ]; then
+    OH_MY_ZSH_INSTALL_FILE="$OH_MY_ZSH_DIR/.oh-my-zsh.sh"
+    if [ ! -f "$OH_MY_ZSH_INSTALL_FILE" ]; then
         RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
