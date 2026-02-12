@@ -161,6 +161,15 @@ install_fnm() {
     fi
 }
 
+install_pnpm() {
+    echo "Installing pnpm..."
+    if ! command -v pnpm &>/dev/null; then
+         curl -fsSL https://get.pnpm.io/install.sh | sh -
+    else
+        echo "pnpm already installed"
+    fi
+}
+
 
 # -------------------------
 # Main
@@ -176,6 +185,7 @@ main() {
     install_zsh_syntax_highlighting
     install_fasd
     install_fnm
+    install_pnpm
 
     # Ask the user if they want to make Zsh the default shell
     if [ "$SHELL" != "$(which zsh)" ]; then
