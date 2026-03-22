@@ -30,3 +30,8 @@
 	date = short
 [core]
 	excludesFile = ~/.gitignore_global
+	
+[includeIf "gitdir:/workspace/"]
+    path = ~/.gitconfig-devcontainer
+[safe]
+	directory = home/finno/projects/npmx.dev

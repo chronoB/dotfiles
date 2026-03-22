@@ -1,0 +1,3 @@
+[commit]
+	# Disable GPG signing in devcontainer environment because its quite hard to do with ssh keys reliably 
+    gpgsign = false 
