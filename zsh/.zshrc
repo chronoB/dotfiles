@@ -53,3 +53,5 @@ esac
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
+
+export PATH="$HOME/.local/bin:$PATH"
