@@ -11,6 +11,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git zsh-autosuggestions fasd ssh-agent zsh-syntax-highlighting)
 
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
+
 # see https://github.com/junegunn/fzf/issues/3703#issuecomment-2675484142
 # this will be working with ubuntu 26 
 if command -v fzf &>/dev/null; then
@@ -40,9 +44,6 @@ fi
 
 export PATH="$HOME/scripts:$PATH"
 
-zstyle :omz:plugins:ssh-agent agent-forwarding yes
-zstyle :omz:plugins:ssh-agent quiet yes
-zstyle :omz:plugins:ssh-agent lazy yes
 # pnpm
 export PNPM_HOME="/home/chronob/.local/share/pnpm"
 case ":$PATH:" in
@@ -52,6 +53,6 @@ esac
 # pnpm end
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[[ -f "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"
 
 export PATH="$HOME/.local/bin:$PATH"

@@ -2,7 +2,7 @@
 set -e
 
 # Stow packages to install (dotfiles)
-STOW_PACKAGES=(zsh p10k git ssh oh-my-zsh)
+STOW_PACKAGES=(zsh p10k git ssh npm)
 
 # Apt packages to install
 # Note: unzip is needed for fnm
@@ -91,8 +91,9 @@ setup_ssh() {
 install_oh_my_zsh() {
     echo "Installing oh-my-zsh..."
     OH_MY_ZSH_DIR="$HOME/.oh-my-zsh"
-    OH_MY_ZSH_INSTALL_FILE="$OH_MY_ZSH_DIR/.oh-my-zsh.sh"
+    OH_MY_ZSH_INSTALL_FILE="$OH_MY_ZSH_DIR/oh-my-zsh.sh"
     if [ ! -f "$OH_MY_ZSH_INSTALL_FILE" ]; then
+        echo "$OH_MY_ZSH_INSTALL_FILE"
         RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     else
@@ -150,6 +151,11 @@ install_fasd (){
       echo "fasd already installed"
   fi
 
+}
+
+symlink_aliases(){
+    echo "Symlinking aliases.zsh..."
+    ln -sf ~/dotfiles/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
 }
 
 install_fnm() {
